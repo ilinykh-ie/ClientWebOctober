@@ -1,0 +1,117 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.page {
+    background-color: #FEEED6;
+}
+
+.button {
+    width: 170px;
+    height: 35px;
+    background-color: #4195B9;
+    color: white;
+    margin-left: 634px;
+    margin-top: 17px;
+    font-family: "Arial", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    border: white;
+}
+
+.page {
+    width: 845px;
+    height: 532px;
+    margin: auto;
+}
+
+.text_form {
+    margin-left: 21px;
+    padding-top: 19px;
+    font-family: "Arial", sans-serif;
+    color: #67655B;
+    font-weight: 650;
+    font-size: 17px;
+}
+
+.page [type="text"] {
+    width: 803px;
+    height: 40px;
+    margin-top: 8px;
+    border: white;
+    padding-left: 12px;
+    font-weight: 500;
+}
+
+.page ::placeholder {
+    color: darkgray;
+    font-size: 17px;
+    font-family: "Arial", sans-serif;
+}
+
+.page textarea {
+    width: 803px;
+    height: 130px;
+    color: dimgrey;
+    font-weight: 500;
+    padding-left: 12px;
+    padding-top: 7px;
+    border: white;
+    margin-top: 8px;
+}
+
+.text_under_form {
+    padding-top: 15px;
+    margin-left: 21px;
+    font-size: 16px;
+    color: grey;
+    font-family: "Arial", sans-serif;
+}
