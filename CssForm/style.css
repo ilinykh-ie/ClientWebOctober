@@ -1,3 +1,4 @@
+/* CSS reset start*/
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -46,72 +47,92 @@ table {
     border-spacing: 0;
 }
 
+/* CSS reset end*/
+
 * {
     box-sizing: border-box;
 }
 
-.page {
+body {
+    font-family: "Arial", sans-serif;
+}
+
+.page form {
     background-color: #FEEED6;
 }
 
-.button {
+.button button {
     width: 170px;
-    height: 35px;
+    height: 36px;
     background-color: #4195B9;
     color: white;
-    margin-left: 634px;
-    margin-top: 17px;
+    margin: 17px 20px 17px auto;
+    horiz-align: right;
     font-family: "Arial", sans-serif;
     font-size: 16px;
     font-weight: 600;
     border: white;
 }
 
+.button button:hover {
+    background-color: #1E20A1;
+}
+
+.button {
+    text-align: right;
+}
+
 .page {
-    width: 845px;
-    height: 532px;
+    max-width: 845px;
     margin: auto;
 }
 
 .text_form {
     margin-left: 21px;
-    padding-top: 19px;
-    font-family: "Arial", sans-serif;
+    padding-top: 20px;
     color: #67655B;
     font-weight: 650;
-    font-size: 17px;
-}
-
-.page [type="text"] {
-    width: 803px;
-    height: 40px;
-    margin-top: 8px;
-    border: white;
-    padding-left: 12px;
-    font-weight: 500;
-}
-
-.page ::placeholder {
-    color: darkgray;
-    font-size: 17px;
-    font-family: "Arial", sans-serif;
-}
-
-.page textarea {
-    width: 803px;
-    height: 130px;
-    color: dimgrey;
-    font-weight: 500;
-    padding-left: 12px;
-    padding-top: 7px;
-    border: white;
-    margin-top: 8px;
+    font-size: 16px;
 }
 
 .text_under_form {
     padding-top: 15px;
     margin-left: 21px;
     font-size: 16px;
-    color: grey;
+    color: #808080;
+}
+
+.page [type="text"] {
+    width: 97.5%;
+    height: 40px;
+    margin: 8px 20px 0 0;
+    border: white;
+    padding-left: 14px;
+    font-weight: 500;
+    color: #a9a9a9;
+    font-size: 16px;
+}
+
+.page ::placeholder {
+    color: #a9a9a9;
+}
+
+.page textarea {
+    width: 97.5%;
+    height: 130px;
+    color: #a9a9a9;
+    padding-left: 14px;
+    padding-top: 7px;
+    border: white;
+    margin-top: 8px;
+    font-size: 16px;
     font-family: "Arial", sans-serif;
+    resize: vertical;
+}
+
+.header {
+    color: #67655B;
+    font-size: 34px;
+    padding-left: 21px;
+    padding-bottom: 7px;
 }
