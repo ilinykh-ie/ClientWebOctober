@@ -1,3 +1,5 @@
+/* CSS reset start*/
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -46,58 +48,48 @@ table {
     border-spacing: 0;
 }
 
-.grey {
+/* CSS reset end*/
+
+.page {
+    max-width: 860px;
+    margin: auto;
+    padding-left: 50px;
+    padding-right: 50px;
+    text-indent: 12px;
+    font-size: 22px;
+    font-family: "Arial", sans-serif;
+    color: #696969;
+}
+
+.first_name {
+    width: 175px;
+}
+
+.last_name {
+    width: 172px;
+}
+
+.job_title {
+    width: 309px;
+}
+
+.twitter {
+    width: 199px;
+}
+
+tbody tr:nth-child(odd) {
     background-color: #EEEEEE;
 }
 
-.white {
-    background-color: white;
-}
-
-.head {
-    background-color: #3498DB;
-    color: white;
-}
-
-.page {
-    width: 858px;
-    height: 310px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.my_table {
-    text-indent: 15px;
-    font-size: 19px;
-    font-family: "Arial", sans-serif;
-    color: dimgrey;
-}
-
-.my_table td {
+.my_tbody td {
+    padding: 16px 0;
     border: 1px solid #CCCCCC;
     vertical-align: middle;
 }
 
-.head td {
-    height: 50px;
-}
-
-.white, .grey td {
-    height: 51px;
-}
-
-.first_detail {
-    width: 175px;
-}
-
-.second_detail {
-    width: 173px;
-}
-
-.third_detail {
-    width: 310px;
-}
-
-.fourth_detail {
-    width: 200px;
+.my_thead td {
+    padding: 14px 0;
+    background-color: #3498DB;
+    border: 1px solid #CCCCCC;
+    color: #ffffff;
 }
