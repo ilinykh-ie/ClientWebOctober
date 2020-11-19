@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Ковертер температур</title>
+    <script defer src="script.js"></script>
+</head>
+<body>
+<div style="width:300px; margin: auto">
+    <p>
+        <label>
+            Введите температуру в гадусах Цельсия:
+            <br>
+            <input type="number" id="input_number">
+        </label>
+    </p>
+    <p>
+        <label>
+            Выбирите шкалу, в которую нужно перевести:
+            <br>
+            <select id="selectedScale">
+                <option value="1">Градусы Фаренгйта</option>
+                <option value="2">Градусы Кельвина</option>
+            </select>
+        </label>
+    </p>
+    <p>
+        <label>
+            <button id="calculateButton">Перевести</button>
+            <hr>
+            Результат:
+            <output id="result"></output>
+        </label>
+    </p>
+</div>
+</body>
+</html>
