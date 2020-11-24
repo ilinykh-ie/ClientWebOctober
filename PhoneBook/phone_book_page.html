@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Phone book</title>
+    <link rel="stylesheet" href="style.css">
+
+    <script defer src="libs/jQuery/jquery-3.5.1.js"></script>
+    <script defer src="libs/jQuery/jquery.mask.js"></script>
+    <script defer src="libs/jQuery/jquery.validate.js"></script>
+    <script defer src="script.js"></script>
+</head>
+<body>
+<div class="page">
+    <h3 class="header">Phone book</h3>
+    <table class="phone_book_table">
+        <thead>
+        <tr>
+            <td>
+                <label>
+                    <input type="checkbox" id="check">
+                </label>
+            </td>
+            <td>№</td>
+            <td>Фамилия</td>
+            <td>Имя</td>
+            <td>Номер телефона</td>
+            <td>Удалить контакт</td>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <form class="input_field">
+        <label>
+            <span>
+                Введите имя:
+            </span>
+            <input type="text" id="name" name="name" required>
+        </label>
+        <hr>
+        <label>
+            <span>
+            Введите фамилию:
+                </span>
+            <input type="text" id="surname" name="surname" title="Введите фамилию" required>
+        </label>
+        <hr>
+        <label>
+            <span>
+            Введите номер телефона:
+                </span>
+            <input type="text" id="phone" name="phone" pattern="\d{1}[(]\d{3}[)]\d{3}[-]\d{2}[-]\d{2}" required>
+        </label>
+        <hr>
+        <button type="button" id="add_button" class="form_button">Добавить</button>
+        <hr>
+        <button type="button" id="delete_selected_button" class="form_button">Удалить выделенные контакты</button>
+    </form>
+</div>
+</body>
+</html>
