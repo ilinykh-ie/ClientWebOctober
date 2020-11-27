@@ -38,8 +38,10 @@ blockquote, q {
     quotes: none;
 }
 
-blockquote:before, blockquote:after,
-q:before, q:after {
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
     content: none;
 }
 
@@ -55,7 +57,7 @@ table {
     margin: auto;
     padding-left: 50px;
     padding-right: 50px;
-    text-indent: 12px;
+
     font-size: 22px;
     font-family: "Arial", sans-serif;
     color: #696969;
@@ -77,18 +79,18 @@ table {
     width: 199px;
 }
 
-tbody tr:nth-child(odd) {
+.contact_table tbody tr:nth-child(odd) {
     background-color: #EEEEEE;
 }
 
-.my_tbody td {
-    padding: 16px 0;
+.contact_table tbody td {
+    padding: 16px 12px;
     border: 1px solid #CCCCCC;
     vertical-align: middle;
 }
 
-.my_thead td {
-    padding: 14px 0;
+.contact_table thead td {
+    padding: 14px 12px;
     background-color: #3498DB;
     border: 1px solid #CCCCCC;
     color: #ffffff;
