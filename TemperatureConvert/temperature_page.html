@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Ковертер температур</title>
+    <link href="style.css" rel="stylesheet">
     <script defer src="script.js"></script>
 </head>
 <body>
-<div style="width:300px; margin: auto">
+<div class="converter_field" style="width:300px; margin: auto">
     <p>
         <label>
             Введите температуру в гадусах Цельсия:
@@ -18,18 +19,20 @@
         <label>
             Выбирите шкалу, в которую нужно перевести:
             <br>
-            <select id="selectedScale">
+            <select id="selected_scale">
                 <option value="1">Градусы Фаренгйта</option>
                 <option value="2">Градусы Кельвина</option>
             </select>
         </label>
     </p>
     <p>
+        <button type="button" id="calculate_button">Перевести</button>
+    </p>
+    <hr>
+    <p>
         <label>
-            <button id="calculateButton">Перевести</button>
-            <hr>
             Результат:
-            <output type="button" id="result"></output>
+            <output id="result"></output>
         </label>
     </p>
 </div>

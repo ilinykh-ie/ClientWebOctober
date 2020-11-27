@@ -1,20 +1,22 @@
-(function () {
-    var inputNumber = document.getElementById("input_number");
-    var selectedScale = document.getElementById("selectedScale");
-    var button = document.getElementById("calculateButton");
+function ready() {
+    var inputField = document.getElementById("input_number");
+    var selectedScale = document.getElementById("selected_scale");
+    var button = document.getElementById("calculate_button");
     var result = document.getElementById("result");
 
     button.addEventListener("click", function () {
         result.textContent = "";
 
-        if (inputNumber.value === "") {
+        if (inputField.value === "") {
             return false;
         }
 
         if (selectedScale.value === "1") {
-            result.textContent = (Number(inputNumber.value) * 9 / 5) + 32;
+            result.textContent = (Number(inputField.value) * 9 / 5) + 32;
         } else if (selectedScale.value === "2") {
-            result.textContent = Number(inputNumber.value) + 273.15;
+            result.textContent = Number(inputField.value) + 273.15;
         }
-    })
-})();
+    });
+}
+
+document.addEventListener("DOMContentLoaded", ready);
