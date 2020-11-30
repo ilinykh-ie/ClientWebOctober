@@ -1,18 +1,18 @@
-(function () {
+function ready() {
     var inputNote = document.getElementById("input_text");
     var button = document.getElementById("add_note_button");
     var list = document.getElementById("todo_list");
-    var add_alert = document.getElementById("add_alert");
+    var addAlert = document.getElementById("add_alert");
 
     button.addEventListener("click", function () {
         var text = inputNote.value;
 
         if (text.trim() === "") {
-            add_alert.textContent = "Нельзя добавлять пустую заметку"
+            addAlert.textContent = "Нельзя добавлять пустую заметку";
             return;
         }
 
-        add_alert.textContent = "";
+        addAlert.textContent = "";
 
         var li = document.createElement("li");
         li.className = "list_item";
@@ -20,63 +20,65 @@
         function createNote() {
             li.textContent = text;
 
-            var edit_alert = document.createElement("output");
-            edit_alert.className = "alert";
+            var editAlert = document.createElement("output");
+            editAlert.className = "alert";
 
-            var edit_button = document.createElement("Button");
-            edit_button.textContent = "Редактировать";
-            edit_button.type = "Button";
-            edit_button.className = "li_buttons";
-            edit_button.addEventListener("click", function () {
+            var editButton = document.createElement("Button");
+            editButton.textContent = "Редактировать";
+            editButton.type = "Button";
+            editButton.className = "li_buttons";
+            editButton.addEventListener("click", function () {
                 li.innerHTML = "<input/>";
                 li.firstChild.value = text;
 
-                var save_button = document.createElement("Button");
-                save_button.textContent = "Сохранить";
-                save_button.type = "Button";
-                save_button.className = "li_buttons";
-                save_button.addEventListener("click", function () {
+                var saveButton = document.createElement("Button");
+                saveButton.textContent = "Сохранить";
+                saveButton.type = "Button";
+                saveButton.className = "li_buttons";
+                saveButton.addEventListener("click", function () {
                     if (li.firstChild.value.trim() === "") {
-                        edit_alert.textContent = "Нельзя сохранить пустую заментку";
+                        editAlert.textContent = "Нельзя сохранить пустую заметку";
                         return;
                     }
 
-                    edit_alert.textContent = "";
+                    editAlert.textContent = "";
 
                     text = li.firstChild.value;
                     createNote();
                 });
-                li.appendChild(save_button);
+                li.appendChild(saveButton);
 
-                var cancel_button = document.createElement("Button");
-                cancel_button.textContent = "Отмена"
-                cancel_button.type = "Button";
-                cancel_button.className = "li_buttons";
-                cancel_button.addEventListener("click", function () {
+                var cancelButton = document.createElement("Button");
+                cancelButton.textContent = "Отмена";
+                cancelButton.type = "Button";
+                cancelButton.className = "li_buttons";
+                cancelButton.addEventListener("click", function () {
                     createNote();
-                })
-                li.appendChild(cancel_button);
+                });
+                li.appendChild(cancelButton);
 
                 li.appendChild(document.createElement("br"));
-                li.appendChild(edit_alert);
-            })
+                li.appendChild(editAlert);
+            });
 
-            li.appendChild(edit_button);
+            li.appendChild(editButton);
 
-            var delete_button = document.createElement("Button");
-            delete_button.textContent = "Удалить";
-            delete_button.type = "Button";
-            delete_button.className = "li_buttons";
-            delete_button.addEventListener("click", function () {
+            var deleteButton = document.createElement("Button");
+            deleteButton.textContent = "Удалить";
+            deleteButton.type = "Button";
+            deleteButton.className = "li_buttons";
+            deleteButton.addEventListener("click", function () {
                 li.parentNode.removeChild(li);
-            })
+            });
 
-            li.appendChild(delete_button);
+            li.appendChild(deleteButton);
         }
 
         createNote();
 
         list.appendChild(li);
         inputNote.value = "";
-    })
-})();
+    });
+}
+
+document.addEventListener("DOMContentLoaded", ready);
