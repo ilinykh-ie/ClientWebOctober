@@ -23,17 +23,17 @@ function ready() {
             var editAlert = document.createElement("output");
             editAlert.className = "alert";
 
-            var editButton = document.createElement("Button");
+            var editButton = document.createElement("button");
             editButton.textContent = "Редактировать";
-            editButton.type = "Button";
+            editButton.type = "button";
             editButton.className = "li_buttons";
             editButton.addEventListener("click", function () {
                 li.innerHTML = "<input/>";
                 li.firstChild.value = text;
 
-                var saveButton = document.createElement("Button");
+                var saveButton = document.createElement("button");
                 saveButton.textContent = "Сохранить";
-                saveButton.type = "Button";
+                saveButton.type = "button";
                 saveButton.className = "li_buttons";
                 saveButton.addEventListener("click", function () {
                     if (li.firstChild.value.trim() === "") {
@@ -48,9 +48,9 @@ function ready() {
                 });
                 li.appendChild(saveButton);
 
-                var cancelButton = document.createElement("Button");
+                var cancelButton = document.createElement("button");
                 cancelButton.textContent = "Отмена";
-                cancelButton.type = "Button";
+                cancelButton.type = "button";
                 cancelButton.className = "li_buttons";
                 cancelButton.addEventListener("click", function () {
                     createNote();
@@ -63,9 +63,9 @@ function ready() {
 
             li.appendChild(editButton);
 
-            var deleteButton = document.createElement("Button");
+            var deleteButton = document.createElement("button");
             deleteButton.textContent = "Удалить";
-            deleteButton.type = "Button";
+            deleteButton.type = "button";
             deleteButton.className = "li_buttons";
             deleteButton.addEventListener("click", function () {
                 li.parentNode.removeChild(li);
