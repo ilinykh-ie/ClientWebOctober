@@ -30,7 +30,8 @@ body {
     line-height: 1;
 }
 
-ol, ul {
+ol,
+ul {
     list-style: none;
 }
 
@@ -38,8 +39,10 @@ blockquote, q {
     quotes: none;
 }
 
-blockquote:before, blockquote:after,
-q:before, q:after {
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
     content: none;
 }
 
@@ -60,16 +63,19 @@ table {
     font-family: "Arial", sans-serif;
     font-size: 25px;
     color: #67655B;
-    margin: 20px;
+    margin: 20px 0;
+    text-align: center;
 }
 
 .list {
     list-style-type: upper-roman;
     list-style-position: inside;
-    margin: 10px;
+    margin: 10px 0;
+    padding: 0 10px 10px 10px;
 }
 
 .list_item {
+    overflow: auto;
     margin-top: 10px;
     font-family: "Times New Roman", serif;
     font-size: 20px;
@@ -78,6 +84,16 @@ table {
 .page {
     max-width: 600px;
     margin: auto;
+    padding: 0 20px;
+}
+
+.elements_field {
+    background-color: #FEEED6;
+}
+
+.input_field {
+    text-align: left;
+    padding: 10px;
 }
 
 .li_buttons {
@@ -88,3 +104,8 @@ table {
 .li_buttons:hover {
     background-color: #3498DB;
 }
+
+
+
+
+
