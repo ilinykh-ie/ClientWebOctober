@@ -2,69 +2,70 @@ $(document).ready(function () {
     var name = $("#name");
     var surname = $("#surname");
     var phone = $("#phone");
-    var input_field = $("form.input_field");
-    var table = $("table.phone_book_table");
+    var inputField = $("form.input_field");
     var tbody = $(".phone_book_table tbody");
 
     phone.mask("9(999)999-99-99");
 
-    input_field.validate({
+    inputField.validate({
+        errorPlacement: function (error, element) {
+            if (element.attr("name") === "name") {
+                error.appendTo($("#name_error"));
+            } else if (element.attr("name") === "surname") {
+                error.appendTo($("#surname_error"));
+            } else if (element.attr("name") === "phone") {
+                error.appendTo($("#phone_error"));
+            }
+        },
+
+        errorClass: "error",
         rules: {
             name: {
                 required: true,
-                minlength: 1,
+                minlength: 1
             },
             surname: {
                 required: true,
-                minlength: 1,
+                minlength: 1
             },
             phone: {
                 required: true,
-                minlength: 15,
-            },
+                minlength: 15
+            }
         },
         messages: {
             name: {
-                required: "Это поле обязательно для заполнения",
-
+                required: "Это поле обязательно для заполнения"
             },
             surname: {
-                required: "Это поле обязательно для заполнения",
-
+                required: "Это поле обязательно для заполнения"
             },
             phone: {
                 required: "Это поле обязательно для заполнения",
-                minlength: "Введите номер в формате x(xxx)xxx-xx-xx",
-            },
+                minlength: "Введите номер в формате x(xxx)xxx-xx-xx"
+            }
         }
     });
 
     var check = $("#check");
 
     check.change(function () {
-        tbody.children().each(function () {
-            if (check.prop("checked")) {
-                $(this).find("[type='checkbox']").prop("checked", true);
-            } else {
-                $(this).find("[type='checkbox']").prop("checked", false);
-            }
-        });
+        $("tbody").find("[type='checkbox']").prop("checked", check.prop("checked"));
+    });
 
-    })
+    var deleteSelectedButton = $("#delete_selected_button");
 
-    var delete_selected_button = $("#delete_selected_button");
-
-    delete_selected_button.click(function () {
-        var is_any_checked = false;
+    deleteSelectedButton.click(function () {
+        var isAnyChecked = false;
 
         tbody.children().each(function () {
             if ($(this).find("[type='checkbox']").prop("checked")) {
-                is_any_checked = true;
+                isAnyChecked = true;
                 return false;
             }
         });
 
-        if (!is_any_checked) {
+        if (!isAnyChecked) {
             return false;
         }
 
@@ -75,13 +76,15 @@ $(document).ready(function () {
                 }
             });
 
+            updateRowsNumbers();
+
             check.prop("checked", false);
         }
     });
 
-    var add_button = $("#add_button");
+    var addButton = $("#add_button");
 
-    add_button.click(function () {
+    addButton.click(function () {
         if (name.valid() && surname.valid() && phone.valid()) {
             var isMatches = false;
 
@@ -93,45 +96,47 @@ $(document).ready(function () {
             });
 
             if (isMatches) {
-                alert("Контакт с таким номером телефона уже существует")
+                alert("Контакт с таким номером телефона уже существует");
                 return;
             }
 
             var tr = $("<tr><td> </td><td> </td><td> </td><td> </td><td> </td><td> </td></tr>");
 
-            var delete_button = $("<button type='button'>x</button>");
-            delete_button.click(function () {
+            var deleteButton = $("<button type='button' title='Удалить строку'>x</button>");
+            deleteButton.click(function () {
                 if (confirm("Удалить строку?")) {
                     tr.remove();
+                    updateRowsNumbers();
                 }
-            })
+            });
 
             tr.children().eq(0).append($("<input type='checkbox'>"));
             tr.children().eq(1).text(tr.index());
             tr.children().eq(2).text(name.val());
             tr.children().eq(3).text(surname.val());
             tr.children().eq(4).text(phone.val());
-            tr.children().eq(5).append(delete_button);
+            tr.children().eq(5).append(deleteButton);
 
             tbody.append(tr);
+            updateRowsNumbers();
 
             name.val("");
             surname.val("");
             phone.val("");
         }
-    })
+    });
 
     var isChanging = false;
 
-    table.on("DOMSubtreeModified", function () {
+    function updateRowsNumbers() {
         if (!isChanging) {
             isChanging = true;
 
             tbody.children().each(function () {
-                $(this).children().eq(1).text(($(this).index() + 1));
-            })
+                $(this).children().eq(1).text($(this).index() + 1);
+            });
 
             isChanging = false;
         }
-    })
+    }
 });

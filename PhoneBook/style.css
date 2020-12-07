@@ -56,6 +56,7 @@ table {
     color: #67655B;
     margin: 20px;
     text-align: center;
+    padding-top: 20px;
 }
 
 .page {
@@ -80,6 +81,7 @@ table {
 
 .phone_book_table {
     display: inline-block;
+    padding-bottom: 10px;
 }
 
 .input_field {
@@ -87,6 +89,8 @@ table {
     vertical-align: top;
     margin-left: 20px;
     text-align: left;
+    padding-bottom: 20px;
+    min-width: 335px;
 }
 
 .input_field span {
@@ -94,14 +98,18 @@ table {
     margin-bottom: 10px;
 }
 
-input:valid {
+.input_field input:valid {
     background: #beffbb;
 }
 
-input:invalid {
+.input_field input:invalid {
     background: #ff9f84;
 }
 
-.form_button {
+.error {
+    color: #dc143c;
+}
 
+.input_field div {
+    height: 20px;
 }
