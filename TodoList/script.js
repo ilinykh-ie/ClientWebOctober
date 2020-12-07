@@ -1,4 +1,4 @@
-function ready() {
+document.addEventListener("DOMContentLoaded", function () {
     var inputNote = document.getElementById("input_text");
     var button = document.getElementById("add_note_button");
     var list = document.getElementById("todo_list");
@@ -79,6 +79,4 @@ function ready() {
         list.appendChild(li);
         inputNote.value = "";
     });
-}
-
-document.addEventListener("DOMContentLoaded", ready);
+});
