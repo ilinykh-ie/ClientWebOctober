@@ -27,10 +27,11 @@
     }
 
     function getEvenNumbersSum(array) {
-        return array.filter(isEven)
-                    .reduce(function (accumulator, currentValue) {
-                        return accumulator + currentValue;
-                    }, 0);
+        return array
+            .filter(isEven)
+            .reduce(function (accumulator, currentValue) {
+                return accumulator + currentValue;
+            }, 0);
     }
 
     console.log(getEvenNumbersSum(initialArray) + " - сумма четных элементов массива");
@@ -42,10 +43,11 @@
     }
 
     function getSquareEvenNumbersArray(array) {
-        return array.filter(isEven)
-                    .map(function (element) {
-                        return Math.pow(element, 2)
-                    });
+        return array
+            .filter(isEven)
+            .map(function (element) {
+                return Math.pow(element, 2)
+            });
     }
 
     console.log(getSquareEvenNumbersArray(arrayFrom1To100) + " - список квадратов четных чисел");
