@@ -1,9 +1,10 @@
 (function () {
-    var peopleList = [{
-        name: "Alexander",
-        lastName: "Lapshin",
-        age: 18
-    },
+    var peopleList = [
+        {
+            name: "Alexander",
+            lastName: "Lapshin",
+            age: 18
+        },
         {
             name: "Anastasia",
             lastName: "Terentyeva",
@@ -50,12 +51,15 @@
             age: 51
         }];
 
-    console.log("Изначальный список людей: ")
-    console.log(peopleList);
+    console.log("Изначальный список людей: ");
+    var initialPeopleList = peopleList.map(function (x) {
+        return _.clone(x);
+    })
+    console.log(initialPeopleList);
 
     function getAverageAge(array) {
-        var sum = _.reduce(peopleList, function (memo, element) {
-            return memo + element.age;
+        var sum = _.reduce(peopleList, function (memo, person) {
+            return memo + person.age;
         }, 0);
 
         return sum / array.length;
@@ -65,11 +69,12 @@
     console.log("Средний возраст равен: " + averageAge + " лет.");
 
     function getOrderedListOfPeopleFrom20To30(array) {
-        var result = _.filter(array, function (element) {
-            return element.age >= 20 && element.age <= 30;
-        });
-
-        return _.sortBy(result, "age");
+        return _.chain(array)
+            .filter(function (person) {
+                return person.age >= 20 && person.age <= 30;
+            })
+            .sortBy("age")
+            .value();
     }
 
     var orderedList = getOrderedListOfPeopleFrom20To30(peopleList);
@@ -77,9 +82,9 @@
     console.log(orderedList);
 
     function addFullName(array) {
-        return _.map(array, function (element) {
-            element.fullName = element.name + " " + element.lastName;
-            return element;
+        return _.each(array, function (person) {
+            person.fullName = person.name + " " + person.lastName;
+            return person;
         });
     }
 
