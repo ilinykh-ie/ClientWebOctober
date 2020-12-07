@@ -111,5 +111,10 @@ table {
 }
 
 .input_field div {
+    padding-top: 10px;
     height: 20px;
+}
+
+.input_field hr {
+    margin-top: 0;
 }
