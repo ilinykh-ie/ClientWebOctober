@@ -1,163 +1,108 @@
 (function () {
-    var countriesArray = [{
-        name: "Italy",
-        cities: [{
-            name: "Roma",
-            population: 2643581,
-            getPopulation: function () {
-                return this.population;
-            }
+    var countriesArray = [
+        {
+            name: "Italy",
+            cities: [
+                {
+                    name: "Roma",
+                    population: 2643581
+                },
+                {
+                    name: "Milano",
+                    population: 1300977
+                },
+                {
+                    name: "Napoli",
+                    population: 1002619
+                }]
         },
-            {
-                name: "Milano",
-                population: 1300977,
-                getPopulation: function () {
-                    return this.population;
-                }
-            },
-            {
-                name: "Napoli",
-                population: 1002619,
-                getPopulation: function () {
-                    return this.population;
-                }
-            }],
-        getCitiesCount: function () {
-            return this.cities.length;
-        },
-        getName: function () {
-            return this.name;
-        },
-        getCities: function () {
-            return this.cities;
-        }
-    },
         {
             name: "Russian Federation",
-            cities: [{
-                name: "Moscow",
-                population: 8389200,
-                getPopulation: function () {
-                    return this.population;
-                }
-            },
+            cities: [
+                {
+                    name: "Moscow",
+                    population: 8389200
+                },
                 {
                     name: "St Petersburg",
-                    population: 4694000,
-                    getPopulation: function () {
-                        return this.population;
-                    }
+                    population: 4694000
                 },
                 {
                     name: "Novosibirsk",
-                    population: 1398800,
-                    getPopulation: function () {
-                        return this.population;
-                    }
+                    population: 1398800
                 },
                 {
                     name: "Jekaterinburg",
-                    population: 1266300,
-                    getPopulation: function () {
-                        return this.population;
-                    }
-                }],
-            getCitiesCount: function () {
-                return this.cities.length;
-            },
-            getName: function () {
-                return this.name;
-            },
-            getCities: function () {
-                return this.cities;
-            }
+                    population: 1266300
+
+                }]
         },
         {
             name: "Germany",
-            cities: [{
-                name: "Berlin",
-                population: 3386667,
-                getPopulation: function () {
-                    return this.population;
-                }
-            },
+            cities: [
+                {
+                    name: "Berlin",
+                    population: 3386667
+                },
                 {
                     name: "Hamburg",
-                    population: 1704735,
-                    getPopulation: function () {
-                        return this.population;
-                    }
+                    population: 1704735
                 },
                 {
                     name: "Munich",
-                    population: 1194560,
-                    getPopulation: function () {
-                        return this.population;
-                    }
+                    population: 1194560
                 },
                 {
                     name: "Essen",
-                    population: 599515,
-                    getPopulation: function () {
-                        return this.population;
-                    }
-                }],
-            getCitiesCount: function () {
-                return this.cities.length;
-            },
-            getName: function () {
-                return this.name;
-            },
-            getCities: function () {
-                return this.cities;
-            }
+                    population: 599515
+                }]
         }];
 
     function getCountriesWithMaxCitiesCount(array) {
-        var maxCitiesCount = 0;
-
-        array.forEach(function (item) {
-            if (item.getCitiesCount() > maxCitiesCount) {
-                maxCitiesCount = item.getCitiesCount();
+        var maxCitiesCount = array.reduce(function (max, currentValue) {
+            if (currentValue.cities.length > max) {
+                max = currentValue.cities.length;
             }
-        })
+
+            return max;
+        }, 0);
 
         var result = [];
 
-        array.filter(function (item) {
-            return item.getCitiesCount() === maxCitiesCount;
-        })
-            .map(function (item) {
-                result.push(item.getName() + ", количество городов: " + item.getCitiesCount())
+        array
+            .filter(function (item) {
+                return item.cities.length === maxCitiesCount;
+            })
+            .forEach(function (item) {
+                result.push(item.name + ", количество городов: " + item.cities.length);
             });
 
         return result;
     }
 
-    getCountriesWithMaxCitiesCount(countriesArray).forEach(function (element) {
-        console.log(element);
-    });
+
+    var countriesWithMaxCitiesCount = getCountriesWithMaxCitiesCount(countriesArray);
+    console.log(countriesWithMaxCitiesCount);
 
     function getCountriesInformationObject(array) {
-        var object = {};
+        var countriesInformationObject = {};
 
         array.forEach(function (item) {
-            object[item.getName()] = item
-                .getCities()
+            countriesInformationObject[item.name] = item.cities
                 .map(function (item) {
-                    return item.getPopulation();
+                    return item.population;
                 })
                 .reduce(function (accumulator, currentValue) {
                     return accumulator + currentValue;
                 }, 0);
         });
 
-        return object;
+        return countriesInformationObject;
     }
 
-    var object = getCountriesInformationObject(countriesArray);
+    var countriesInformationObject = getCountriesInformationObject(countriesArray);
 
-    for (var key in object) {
-        console.log("Название страны: " + key + ", население: " + object[key]);
+    for (var key in countriesInformationObject) {
+        console.log("Название страны: " + key + ", население: " + countriesInformationObject[key]);
     }
 })();
