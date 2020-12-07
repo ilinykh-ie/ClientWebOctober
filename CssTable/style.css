@@ -55,8 +55,7 @@ table {
 .page {
     max-width: 860px;
     margin: auto;
-    padding-left: 50px;
-    padding-right: 50px;
+    padding: 0 10px;
 
     font-size: 22px;
     font-family: "Arial", sans-serif;
