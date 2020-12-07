@@ -1,4 +1,4 @@
-function ready() {
+document.addEventListener("DOMContentLoaded", function () {
     var inputField = document.getElementById("input_number");
     var selectedScale = document.getElementById("selected_scale");
     var button = document.getElementById("calculate_button");
@@ -17,6 +17,4 @@ function ready() {
             result.textContent = Number(inputField.value) + 273.15;
         }
     });
-}
-
-document.addEventListener("DOMContentLoaded", ready);
+});
