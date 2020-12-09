@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+    <title>TODO List</title>
+    <link rel="stylesheet" href="style.css">
+
+    <script defer src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script defer src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script defer src="node_modules/vue/dist/vue.js"></script>
+
+    <script defer src="script.js"></script>
+</head>
+<body>
+<div v-cloak class="elements_field container" id="app">
+    <div class="row">
+        <h3 class="header col">TODO List</h3>
+    </div>
+    <div class="input_field row">
+        <label>
+            <input v-model="todoText" type="text" class="form-control" placeholder="Введите заметку"/>
+        </label>
+        <button @click="addTodoItem" type="button" class="btn btn-outline-dark">Добавить
+        </button>
+    </div>
+    <output v-text="createAlert" class="alert"></output>
+    <div class="row">
+        <ol class="list">
+            <li class="py-1" v-for="item in items" :key="item.id">
+                <template v-if="item.isEditing">
+                    <label>
+                        <input v-model="item.editText" type="text"/>
+                    </label>
+                    <button @click="save(item)" type="button" class="btn btn-outline-primary">Сохранить</button>
+                    <button @click="cancel(item)" type="button" class="btn btn-outline-secondary">Отмена</button>
+                    <div>
+                        <output v-text="item.editAlert" class="alert"></output>
+                    </div>
+                </template>
+                <template v-else>
+                    <span>{{item.text}} </span>
+                    <button @click="editItem(item)" type="button" class="btn btn-outline-primary">Редактирвоать</button>
+                    <button @click="deleteItem(item)" type="button" class="btn btn-outline-secondary">Удалить</button>
+                </template>
+            </li>
+        </ol>
+    </div>
+</div>
+</body>
+</html>
