@@ -1,0 +1,18 @@
+[v-cloak] {
+    display: none;
+}
+
+.container table td,
+.container table th {
+    text-align: center;
+}
+
+div.error {
+    color: #ff0000;
+    height: 20px;
+}
+
+.container .btn-outline-danger,
+.container [type="checkbox"] {
+    margin: 5px;
+}
