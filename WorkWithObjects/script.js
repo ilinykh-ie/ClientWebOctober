@@ -14,7 +14,8 @@
                 {
                     name: "Napoli",
                     population: 1002619
-                }]
+                }
+            ]
         },
         {
             name: "Russian Federation",
@@ -35,7 +36,8 @@
                     name: "Jekaterinburg",
                     population: 1266300
 
-                }]
+                }
+            ]
         },
         {
             name: "Germany",
@@ -55,45 +57,41 @@
                 {
                     name: "Essen",
                     population: 599515
-                }]
-        }];
+                }
+            ]
+        }
+    ];
 
     function getCountriesWithMaxCitiesCount(array) {
-        var maxCitiesCount = array.reduce(function (max, currentValue) {
-            if (currentValue.cities.length > max) {
-                max = currentValue.cities.length;
+        var maxCitiesCount = array.reduce(function (max, country) {
+            if (country.cities.length > max) {
+                max = country.cities.length;
             }
 
             return max;
         }, 0);
 
-        var result = [];
 
-        array
+        return array
             .filter(function (item) {
                 return item.cities.length === maxCitiesCount;
             })
-            .forEach(function (item) {
-                result.push(item.name + ", количество городов: " + item.cities.length);
+            .map(function (item) {
+                return item.name;
             });
-
-        return result;
     }
 
 
     var countriesWithMaxCitiesCount = getCountriesWithMaxCitiesCount(countriesArray);
-    console.log(countriesWithMaxCitiesCount);
+    console.log("Страны с максимальным количеством городов: " + countriesWithMaxCitiesCount);
 
-    function getCountriesInformationObject(array) {
+    function getCountriesInformationObject(countriesArray) {
         var countriesInformationObject = {};
 
-        array.forEach(function (item) {
-            countriesInformationObject[item.name] = item.cities
-                .map(function (item) {
-                    return item.population;
-                })
-                .reduce(function (accumulator, currentValue) {
-                    return accumulator + currentValue;
+        countriesArray.forEach(function (country) {
+            countriesInformationObject[country.name] = country.cities
+                .reduce(function (totalPopulation, city) {
+                    return totalPopulation + city.population;
                 }, 0);
         });
 
