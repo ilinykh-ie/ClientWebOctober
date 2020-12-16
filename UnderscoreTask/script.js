@@ -49,20 +49,21 @@
             name: "Vladimir",
             lastName: "Kuznetsov",
             age: 51
-        }];
+        }
+    ];
 
     console.log("Изначальный список людей: ");
-    var initialPeopleList = peopleList.map(function (x) {
+    var copiedPeopleList = peopleList.map(function (x) {
         return _.clone(x);
     })
-    console.log(initialPeopleList);
+    console.log(copiedPeopleList);
 
-    function getAverageAge(array) {
-        var sum = _.reduce(peopleList, function (memo, person) {
+    function getAverageAge(peopleArray) {
+        var sum = _.reduce(peopleArray, function (memo, person) {
             return memo + person.age;
         }, 0);
 
-        return sum / array.length;
+        return sum / peopleArray.length;
     }
 
     var averageAge = getAverageAge(peopleList);
@@ -82,13 +83,12 @@
     console.log(orderedList);
 
     function addFullName(array) {
-        return _.each(array, function (person) {
+        _.each(array, function (person) {
             person.fullName = person.name + " " + person.lastName;
-            return person;
         });
     }
 
-    var changedList = addFullName(peopleList);
+    addFullName(peopleList);
     console.log("Список с добавленным полем 'полное имя': ");
-    console.log(changedList);
+    console.log(peopleList);
 })();
