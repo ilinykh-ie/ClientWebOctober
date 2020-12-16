@@ -9,11 +9,11 @@ $(document).ready(function () {
 
     inputField.validate({
         errorPlacement: function (error, element) {
-            if (element.attr("name") === "name") {
+            if (element.prop("name") === "name") {
                 error.appendTo($("#name_error"));
-            } else if (element.attr("name") === "surname") {
+            } else if (element.prop("name") === "surname") {
                 error.appendTo($("#surname_error"));
-            } else if (element.attr("name") === "phone") {
+            } else if (element.prop("name") === "phone") {
                 error.appendTo($("#phone_error"));
             }
         },
