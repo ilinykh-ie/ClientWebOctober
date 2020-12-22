@@ -35,7 +35,6 @@
                 {
                     name: "Jekaterinburg",
                     population: 1266300
-
                 }
             ]
         },
@@ -62,28 +61,28 @@
         }
     ];
 
-    function getCountriesWithMaxCitiesCount(array) {
-        var maxCitiesCount = array.reduce(function (max, country) {
-            if (country.cities.length > max) {
-                max = country.cities.length;
-            }
-
-            return max;
+    function getCountriesWithMaxCitiesCount(countriesArray) {
+        var maxCitiesCount = countriesArray.reduce(function (max, country) {
+            return Math.max(max, country.cities.length);
         }, 0);
 
-
-        return array
+        return countriesArray
             .filter(function (item) {
                 return item.cities.length === maxCitiesCount;
             })
             .map(function (item) {
-                return item.name;
+                return item;
             });
     }
 
-
     var countriesWithMaxCitiesCount = getCountriesWithMaxCitiesCount(countriesArray);
-    console.log("Страны с максимальным количеством городов: " + countriesWithMaxCitiesCount);
+    var countryNumber = 0;
+
+    console.log("Страны с максимальным количеством городов: ");
+    countriesWithMaxCitiesCount.forEach(function (country) {
+        countryNumber++;
+        console.log(countryNumber + ". " + country.name);
+    });
 
     function getCountriesInformationObject(countriesArray) {
         var countriesInformationObject = {};
