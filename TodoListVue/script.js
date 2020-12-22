@@ -1,3 +1,4 @@
+// noinspection JSUnusedGlobalSymbols
 new Vue({
     el: "#app",
 
@@ -13,7 +14,7 @@ new Vue({
             var text = this.todoText;
 
             if (text.trim().length === 0) {
-                this.createAlert = "Нельзя добавить пусую заметку";
+                this.createAlert = "Нельзя добавить пустую заметку";
                 return;
             } else {
                 this.createAlert = "";
@@ -32,10 +33,9 @@ new Vue({
         },
 
         deleteItem: function (item) {
-            this.items = this.items.filter(function (i) {
-                return i !== item;
+            this.items = this.items.filter(function (todoItem) {
+                return todoItem !== item;
             })
-            this.newId--;
         },
 
         editItem: function (item) {
@@ -44,12 +44,11 @@ new Vue({
 
         save: function (item) {
             if (item.editText.trim().length === 0) {
-                item.editAlert = "Нельзя сохранить пусую заметку";
+                item.editAlert = "Нельзя сохранить пустую заметку";
                 return;
-            } else {
-                item.editAlert = "";
             }
 
+            item.editAlert = "";
             item.isEditing = false;
             item.text = item.editText;
         },
