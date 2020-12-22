@@ -16,3 +16,7 @@ div.error {
 .container [type="checkbox"] {
     margin: 5px;
 }
+
+body .row {
+    margin: 0;
+}

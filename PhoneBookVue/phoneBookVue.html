@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,10 +32,10 @@
     <tr>
         <td><!--suppress HtmlFormInputWithoutLabel -->
             <input type="checkbox" v-model="item.checked"></td>
-        <td>{{item.id}}</td>
-        <td>{{item.surname}}</td>
-        <td>{{item.name}}</td>
-        <td>{{item.phone}}</td>
+        <td>{{ item.index }}</td>
+        <td>{{ item.surname }}</td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.phone }}</td>
         <td>
             <button type='button' @click="deleteContact" class="btn btn-outline-danger" title='Удалить контакт'>x
             </button>
@@ -77,9 +77,9 @@
                            v-model="name"
                            class="form-control"
                            title="Введите имя"
-                           v-bind:class="{'is-valid': isNameValid,'is-invalid': !isNameValid}">
+                           :class="{'is-valid': isNameValid, 'is-invalid': !isNameValid}">
                 </label>
-                <div class="error">{{nameAlert}}</div>
+                <div class="error">{{ nameAlert }}</div>
                 <hr>
                 <label>
             <span>
@@ -89,9 +89,9 @@
                            v-model="surname"
                            title="Введите фамилию"
                            class="form-control"
-                           v-bind:class="{'is-valid': isSurnameValid,'is-invalid': !isSurnameValid}">
+                           :class="{'is-valid': isSurnameValid, 'is-invalid': !isSurnameValid}">
                 </label>
-                <div class="error">{{surnameAlert}}</div>
+                <div class="error">{{ surnameAlert }}</div>
                 <hr>
                 <label>
             <span>
@@ -102,9 +102,9 @@
                            v-if class="form-control bfh-phone"
                            data-format="d(ddd)-ddd-dd-dd"
                            maxlength="16"
-                           v-bind:class="{'is-valid': isPhoneValid,'is-invalid': !isPhoneValid}">
+                           :class="{'is-valid': isPhoneValid,'is-invalid': !isPhoneValid}">
                 </label>
-                <div class="error">{{phoneAlert}}</div>
+                <div class="error">{{ phoneAlert }}</div>
                 <hr>
                 <button type="button" @click="addContact" class="btn btn-primary">Добавить</button>
                 <hr>
