@@ -32,7 +32,7 @@
     <tr>
         <td><!--suppress HtmlFormInputWithoutLabel -->
             <input type="checkbox" v-model="item.checked"></td>
-        <td>{{ item.index }}</td>
+        <td>{{ index+1 }}</td>
         <td>{{ item.surname }}</td>
         <td>{{ item.name }}</td>
         <td>{{ item.phone }}</td>
@@ -62,8 +62,9 @@
                 </thead>
                 <tbody>
                 <contact class="py-2"
-                         v-for="item in items"
+                         v-for="(item, index) in items"
                          :item="item"
+                         :index="index"
                          @delete-contact="deleteContact"
                          :key="item.id"></contact>
                 </tbody>

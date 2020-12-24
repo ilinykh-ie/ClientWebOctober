@@ -3,6 +3,11 @@ Vue.component("contact", {
         item: {
             type: Object,
             required: true
+        },
+
+        index: {
+            type: Number,
+            required: true
         }
     },
 
@@ -22,13 +27,12 @@ Vue.component("contact", {
 Vue.component("phone-book", {
     data: function () {
         return {
-            items: [],  //{checked, id, index, name, surname, phone}
+            items: [],  //{checked, id, name, surname, phone}
             checked: false,
             name: "",
             surname: "",
             phone: "",
             newId: 1,
-            indexNumber: 1,
             nameAlert: "",
             surnameAlert: "",
             phoneAlert: "",
@@ -80,7 +84,6 @@ Vue.component("phone-book", {
                 this.items.push({
                     checked: false,
                     id: this.newId,
-                    index: this.indexNumber,
                     name: this.name,
                     surname: this.surname,
                     phone: this.phone
@@ -91,8 +94,6 @@ Vue.component("phone-book", {
                 this.phone = "";
 
                 this.newId++;
-
-                this.updateContactsIndex();
             }
         },
 
@@ -101,8 +102,6 @@ Vue.component("phone-book", {
                 this.items = this.items.filter(function (contact) {
                     return contact !== item;
                 });
-
-                this.updateContactsIndex();
             }
         },
 
@@ -116,18 +115,8 @@ Vue.component("phone-book", {
                     this.items = this.items.filter(function (contact) {
                         return contact.checked === false;
                     });
-
-                    this.updateContactsIndex();
                 }
             }
-        },
-
-        updateContactsIndex: function () {
-            this.items.forEach(function (currentValue, index) {
-                currentValue.index = index + 1;
-            });
-
-            this.indexNumber = this.items.length + 1;
         },
 
         checkAll: function () {
