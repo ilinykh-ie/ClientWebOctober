@@ -1,32 +1,31 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    padding: 50px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+    color: #00B7FF;
 }
 
 [v-cloak] {
-  display: none;
+    display: none;
 }
 
 .container table td,
 .container table th {
-  text-align: center;
+    text-align: center;
 }
 
 div.error {
-  color: #ff0000;
-  height: 20px;
+    color: #ff0000;
+    height: 20px;
 }
 
 .container .btn-outline-danger,
 .container [type="checkbox"] {
-  margin: 5px;
+    margin: 5px;
 }
 
-.search{
-  margin: 5px;
-  min-width: 300px;
+body .row {
+    margin: 0;
 }

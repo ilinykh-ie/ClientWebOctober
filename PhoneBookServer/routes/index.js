@@ -12,18 +12,9 @@ router.get("/api/getContacts", function (req, res) {
         : contacts.filter(function (c) {
             return c.name.toUpperCase().indexOf(term) >= 0 || c.surname.toUpperCase().indexOf(term) >= 0
                 || c.phone.toUpperCase().indexOf(term) >= 0;
-        })
-    debugger
+        });
     res.send(result);
 });
-
-function updateContactsId() {
-    contacts.forEach(function (currentValue, index) {
-        currentValue.id = index + 1;
-    })
-
-    newId = contacts.length + 1;
-}
 
 router.post("/api/deleteContact", function (req, res) {
     var id = req.body.id;
@@ -31,8 +22,6 @@ router.post("/api/deleteContact", function (req, res) {
     contacts = contacts.filter(function (c) {
         return c.id !== id;
     });
-
-    updateContactsId();
 
     res.send({
         success: true,
@@ -48,8 +37,6 @@ router.post("/api/deleteSelectedContacts", function (req, res) {
     contacts = contacts.filter(function (c) {
         return !selectedIds.includes(c.id);
     });
-
-    updateContactsId();
 
     res.send({
         success: true,
@@ -81,7 +68,7 @@ router.post("/api/createContact", function (req, res) {
     if (!contact.surname) {
         res.send({
             success: false,
-            message: "Необходимо фамилию имя контакта"
+            message: "Необходимо задать фамилию контакта"
         });
 
         return;
@@ -90,7 +77,16 @@ router.post("/api/createContact", function (req, res) {
     if (!contact.phone) {
         res.send({
             success: false,
-            message: "Необходимо телефон имя контакта"
+            message: "Необходимо задать телефон контакта"
+        });
+
+        return;
+    }
+
+    if (contact.phone.length !== 16) {
+        res.send({
+            success: false,
+            message: "Необходимо задать телефон контакта в формате +7 (xxx)-xxx-xx-xx"
         });
 
         return;
@@ -111,7 +107,6 @@ router.post("/api/createContact", function (req, res) {
     newId++;
 
     contacts.push(contact);
-    updateContactsId();
 
     res.send({
         success: true,

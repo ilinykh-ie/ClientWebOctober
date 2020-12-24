@@ -15,6 +15,11 @@ Vue.component("contact", {
         item: {
             type: Object,
             required: true
+        },
+
+        index: {
+            type: Number,
+            required: true
         }
     },
 
@@ -39,9 +44,6 @@ Vue.component("phone-book", {
             name: "",
             surname: "",
             phone: "",
-            isNameValid: false,
-            isSurnameValid: false,
-            isPhoneValid: false,
             nameAlert: "",
             surnameAlert: "",
             phoneAlert: "",
@@ -54,19 +56,21 @@ Vue.component("phone-book", {
         this.loadContacts();
     },
 
-    watch: {
-        name() {
-            this.isNameValid = this.name.trim() !== "";
+    computed: {
+        isNameValid: function () {
+            return this.name.trim() !== "";
         },
 
-        surname() {
-            this.isSurnameValid = this.surname.trim() !== "";
+        isSurnameValid: function () {
+            return this.surname.trim() !== "";
         },
 
-        phone() {
+        isPhoneValid: function () {
             if (this.phone.trim() === "") {
-                this.isPhoneValid = false;
-            } else this.isPhoneValid = this.phone.length === 16;
+                return false;
+            }
+
+            return this.phone.length === 16;
         }
     },
 
@@ -81,19 +85,19 @@ Vue.component("phone-book", {
 
         addContact: function () {
             if (this.name.trim() === "") {
-                this.nameAlert = "Имя обязательно для заполения";
+                this.nameAlert = "Имя обязательно для заполнения";
             } else {
                 this.nameAlert = "";
             }
 
             if (this.surname.trim() === "") {
-                this.surnameAlert = "Фамилия обязательна для заполения";
+                this.surnameAlert = "Фамилия обязательна для заполнения";
             } else {
                 this.surnameAlert = "";
             }
 
             if (this.phone.trim() === "") {
-                this.phoneAlert = "Телефон обязателен для заполения";
+                this.phoneAlert = "Телефон обязателен для заполнения";
             } else if (this.phone.length !== 16) {
                 this.phoneAlert = "Введите телефон в формате +7 (xxx)-xxx-xx-xx";
             } else {
@@ -168,17 +172,12 @@ Vue.component("phone-book", {
         },
 
         checkAll: function () {
-            if (this.isMainChecked) {
-                this.items.forEach(function (item) {
-                    item.checked = true;
-                })
-            } else {
-                this.items.forEach(function (item) {
-                    item.checked = false;
-                })
-            }
-        },
+            var self = this;
 
+            this.items.forEach(function (item) {
+                item.checked = self.isMainChecked;
+            });
+        }
     },
 
     template: "#table-template"
