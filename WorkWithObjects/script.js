@@ -69,9 +69,6 @@
         return countriesArray
             .filter(function (item) {
                 return item.cities.length === maxCitiesCount;
-            })
-            .map(function (item) {
-                return item;
             });
     }
 
