@@ -16,9 +16,9 @@ new Vue({
             if (text.trim().length === 0) {
                 this.createAlert = "Нельзя добавить пустую заметку";
                 return;
-            } else {
-                this.createAlert = "";
             }
+
+            this.createAlert = "";
 
             this.items.push({
                 id: this.newId,
@@ -35,7 +35,7 @@ new Vue({
         deleteItem: function (item) {
             this.items = this.items.filter(function (todoItem) {
                 return todoItem !== item;
-            })
+            });
         },
 
         editItem: function (item) {
@@ -56,6 +56,7 @@ new Vue({
         cancel: function (item) {
             item.isEditing = false;
             item.editText = item.text;
+            item.editAlert = "";
         }
     }
 });
