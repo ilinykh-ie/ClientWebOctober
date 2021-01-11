@@ -38,7 +38,7 @@ Vue.component("phone-book", {
             phoneAlert: "",
             isMainChecked: false,
             isAddClicked: false
-        }
+        };
     },
 
     computed: {
