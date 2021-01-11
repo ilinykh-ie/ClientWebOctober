@@ -21,15 +21,17 @@
         <h3 class="header col">TODO List</h3>
     </div>
     <div class="input_field row">
-        <label>
-            <input v-model="todoText" type="text" class="form-control" placeholder="Введите заметку"/>
-        </label>
-        <button @click="addTodoItem" type="button" class="btn btn-outline-dark">Добавить
-        </button>
+        <div class="col">
+            <label>
+                <input v-model="todoText" type="text" class="form-control" placeholder="Введите заметку"/>
+            </label>
+            <button @click="addTodoItem" type="button" class="btn btn-outline-dark">Добавить
+            </button>
+        </div>
     </div>
     <output v-text="createAlert" class="alert"></output>
     <div class="row">
-        <ol class="list">
+        <ol class="list col">
             <li class="py-1" v-for="item in items" :key="item.id">
                 <template v-if="item.isEditing">
                     <label>
