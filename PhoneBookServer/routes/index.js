@@ -30,9 +30,7 @@ router.post("/api/deleteContact", function (req, res) {
 });
 
 router.post("/api/deleteSelectedContacts", function (req, res) {
-    var selectedIds = req.body;
-
-    console.log(selectedIds)
+    var selectedIds = req.body.selectedIds;
 
     contacts = contacts.filter(function (c) {
         return !selectedIds.includes(c.id);

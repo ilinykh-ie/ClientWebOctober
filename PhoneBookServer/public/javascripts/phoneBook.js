@@ -1,13 +1,25 @@
-function get(url, data) {
-    return $.get(url, data);
-}
+import {get, post} from "./ajax.js";
 
-function post(url, data) {
-    return $.post({
-        url: url,
-        contentType: "application/json",
-        data: JSON.stringify(data)
-    });
+class PhoneBookService {
+    constructor() {
+        this.baseUrl = "/api/";
+    }
+
+    loadContacts = function (term) {
+        return get(this.baseUrl + "getContacts", {term: term});
+    }
+
+    addContact = function (contact) {
+        return post(this.baseUrl + "createContact", {contact: contact});
+    }
+
+    deleteContact = function (id) {
+        return post(this.baseUrl + "deleteContact", {id: id});
+    }
+
+    deleteSelectedContacts = function (selectedIds) {
+        return post(this.baseUrl + "deleteSelectedContacts", {selectedIds: selectedIds});
+    }
 }
 
 Vue.component("contact", {
@@ -48,8 +60,10 @@ Vue.component("phone-book", {
             surnameAlert: "",
             phoneAlert: "",
             isMainChecked: false,
-            term: ""
-        }
+            term: "",
+            service: new PhoneBookService(),
+            isAddClicked: false
+        };
     },
 
     created: function () {
@@ -57,20 +71,28 @@ Vue.component("phone-book", {
     },
 
     computed: {
-        isNameValid: function () {
-            return this.name.trim() !== "";
+        isNameValid() {
+            return this.isAddClicked && this.name.trim() !== "";
         },
 
-        isSurnameValid: function () {
-            return this.surname.trim() !== "";
+        isNameInvalid() {
+            return this.isAddClicked && this.name.trim() === ""
         },
 
-        isPhoneValid: function () {
-            if (this.phone.trim() === "") {
-                return false;
-            }
+        isSurnameValid() {
+            return this.isAddClicked && this.surname.trim() !== "";
+        },
 
-            return this.phone.length === 16;
+        isSurnameInvalid() {
+            return this.isAddClicked && this.surname.trim() === "";
+        },
+
+        isPhoneValid() {
+            return this.isAddClicked && this.phone.length === 16;
+        },
+
+        isPhoneInvalid() {
+            return this.isAddClicked && this.phone.length !== 16;
         }
     },
 
@@ -78,12 +100,14 @@ Vue.component("phone-book", {
         loadContacts: function () {
             var self = this;
 
-            get("/api/getContacts", {term: this.term}).done(function (response) {
+            this.service.loadContacts(this.term).done(function (response) {
                 self.items = response;
             });
         },
 
         addContact: function () {
+            this.isAddClicked = true;
+
             if (this.name.trim() === "") {
                 this.nameAlert = "Имя обязательно для заполнения";
             } else {
@@ -105,18 +129,16 @@ Vue.component("phone-book", {
             }
 
             if (this.isNameValid && this.isSurnameValid && this.isPhoneValid) {
-                var request = {
-                    contact: {
-                        checked: false,
-                        name: this.name,
-                        surname: this.surname,
-                        phone: this.phone
-                    }
+                var contact = {
+                    checked: false,
+                    name: this.name,
+                    surname: this.surname,
+                    phone: this.phone
                 }
 
                 var self = this;
 
-                post("/api/createContact", request).done(function (response) {
+                this.service.addContact(contact).done(function (response) {
                     if (!response.success) {
                         alert(response.message);
                         return;
@@ -125,6 +147,8 @@ Vue.component("phone-book", {
                     self.name = "";
                     self.surname = "";
                     self.phone = "";
+
+                    self.isAddClicked = false;
 
                     self.loadContacts();
                 });
@@ -135,7 +159,7 @@ Vue.component("phone-book", {
             var self = this;
 
             if (confirm("Удалить контакт?")) {
-                post("/api/deleteContact", {id: item.id}).done(function (response) {
+                this.service.deleteContact(item.id).done(function (response) {
                     if (!response.success) {
                         alert(response.message);
                         return;
@@ -147,26 +171,21 @@ Vue.component("phone-book", {
         },
 
         deleteSelectedContacts() {
-            var selectedIds = [];
-
-            this.items.forEach(function (i) {
-                if (i.checked) {
-                    selectedIds.push(i.id);
-                }
-            });
+            var selectedIds = this.items
+                .filter(function (item) {
+                    return item.checked;
+                })
+                .map(function (item) {
+                    return item.id;
+                });
 
             var self = this;
 
             if (selectedIds.length !== 0) {
                 if (confirm("Удалить выделенные строки?")) {
-                    post("/api/deleteSelectedContacts", selectedIds).done(function (response) {
-                        if (!response.success) {
-                            alert(response.message);
-                            return;
-                        }
+                    this.service.deleteSelectedContacts(selectedIds);
 
-                        self.loadContacts();
-                    });
+                    self.loadContacts();
                 }
             }
         },
@@ -182,7 +201,6 @@ Vue.component("phone-book", {
 
     template: "#table-template"
 });
-
 
 new Vue({
     el: "#app"
