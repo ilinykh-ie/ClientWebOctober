@@ -32,7 +32,7 @@
     <tr>
         <td><!--suppress HtmlFormInputWithoutLabel -->
             <input type="checkbox" v-model="item.checked"></td>
-        <td>{{ index+1 }}</td>
+        <td>{{ index + 1 }}</td>
         <td>{{ item.surname }}</td>
         <td>{{ item.name }}</td>
         <td>{{ item.phone }}</td>
@@ -49,10 +49,10 @@
             <table class="table-bordered border-primary col-md-6 col-sm-12">
                 <thead class="table-success">
                 <tr>
-                    <td>
+                    <th>
                         <!--suppress HtmlFormInputWithoutLabel -->
                         <input type="checkbox" v-model="isMainChecked" @change="checkAll">
-                    </td>
+                    </th>
                     <th scope="col">№</th>
                     <th scope="col">Фамилия</th>
                     <th scope="col">Имя</th>
@@ -78,7 +78,7 @@
                            v-model="name"
                            class="form-control"
                            title="Введите имя"
-                           :class="{'is-valid': isNameValid, 'is-invalid': !isNameValid}">
+                           :class="{'is-valid': isNameValid, 'is-invalid': isNameInvalid}">
                 </label>
                 <div class="error">{{ nameAlert }}</div>
                 <hr>
@@ -90,7 +90,7 @@
                            v-model="surname"
                            title="Введите фамилию"
                            class="form-control"
-                           :class="{'is-valid': isSurnameValid, 'is-invalid': !isSurnameValid}">
+                           :class="{'is-valid': isSurnameValid, 'is-invalid': isSurnameInvalid}">
                 </label>
                 <div class="error">{{ surnameAlert }}</div>
                 <hr>
@@ -100,10 +100,10 @@
                 </span>
                     <input type="text"
                            v-model="phone"
-                           v-if class="form-control bfh-phone"
+                           class="form-control bfh-phone"
                            data-format="d(ddd)-ddd-dd-dd"
                            maxlength="16"
-                           :class="{'is-valid': isPhoneValid,'is-invalid': !isPhoneValid}">
+                           :class="{'is-valid': isPhoneValid,'is-invalid': isPhoneInvalid}">
                 </label>
                 <div class="error">{{ phoneAlert }}</div>
                 <hr>

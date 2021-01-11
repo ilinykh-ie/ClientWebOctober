@@ -36,30 +36,41 @@ Vue.component("phone-book", {
             nameAlert: "",
             surnameAlert: "",
             phoneAlert: "",
-            isMainChecked: false
+            isMainChecked: false,
+            isAddClicked: false
         }
     },
 
     computed: {
-        isNameValid: function () {
-            return this.name.trim() !== "";
+        isNameValid() {
+            return this.isAddClicked && this.name.trim() !== "";
         },
 
-        isSurnameValid: function () {
-            return this.surname.trim() !== "";
+        isNameInvalid() {
+            return this.isAddClicked && this.name.trim() === ""
         },
 
-        isPhoneValid: function () {
-            if (this.phone.trim() === "") {
-                return false;
-            }
+        isSurnameValid() {
+            return this.isAddClicked && this.surname.trim() !== "";
+        },
 
-            return this.phone.length === 16;
+        isSurnameInvalid() {
+            return this.isAddClicked && this.surname.trim() === "";
+        },
+
+        isPhoneValid() {
+            return this.isAddClicked && this.phone.length === 16;
+        },
+
+        isPhoneInvalid() {
+            return this.isAddClicked && this.phone.length !== 16;
         }
     },
 
     methods: {
         addContact: function () {
+            this.isAddClicked = true;
+
             if (this.name.trim() === "") {
                 this.nameAlert = "Имя обязательно для заполнения";
             } else {
@@ -92,6 +103,8 @@ Vue.component("phone-book", {
                 this.name = "";
                 this.surname = "";
                 this.phone = "";
+
+                this.isAddClicked = false;
 
                 this.newId++;
             }
@@ -130,7 +143,6 @@ Vue.component("phone-book", {
 
     template: "#table-template"
 });
-
 
 new Vue({
     el: "#app"
