@@ -15,7 +15,6 @@ module.exports = {
     },
 
     resolve: {
-        extensions: [".vue", ".bundle"],
         alias: {
             "vue$": "vue/dist/vue.esm.js"
         }

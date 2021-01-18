@@ -71,6 +71,8 @@
 </template>
 
 <script>
+import Contact from "./Contact.vue";
+
 export default {
   data() {
     return {
@@ -86,6 +88,10 @@ export default {
       isMainChecked: false,
       isAddClicked: false
     }
+  },
+
+  components: {
+    "contact": Contact
   },
 
   computed: {
