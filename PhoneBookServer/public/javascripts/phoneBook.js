@@ -6,7 +6,7 @@ class PhoneBookService {
     }
 
     loadContacts = function (term) {
-        return get(this.baseUrl + "getContacts", {term: term});
+        return get(this.baseUrl + "getContacts", { term: term });
     }
 
     addContact = function (contact) {
